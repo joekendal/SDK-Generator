@@ -1,5 +1,17 @@
 FROM swaggerapi/swagger-codegen-cli-v3
 
-COPY entrypoint.sh /entrypoint.sh
+WORKDIR /action
 
-ENTRYPOINT ["/entrypoint.sh"]
+COPY codegen.sh .
+
+RUN ["chmod", "+x", "codegen.sh"]
+
+FROM golang
+WORKDIR /action
+COPY go.mod .
+COPY go.sum .
+RUN go mod download
+COPY *.go ./
+RUN go build -o main
+
+ENTRYPOINT ["./main"]

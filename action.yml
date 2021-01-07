@@ -2,9 +2,39 @@ name: 'SDK Generator'
 description: 'Automatically update client SDK repositories from an OpenAPI'
 
 inputs:
-  access-token:
+  github-token:
+    # Example:
+    #   GITHUB_TOKEN: ${{ secrets.SDK_GENERATOR_ACCESS_TOKEN }}
     description: 'GitHub Access Token'
     required: true
+
+  aws-key:
+    required: false
+    description: 'AWS Access Key Id'
+  aws-key-secret:
+    required: false
+    description: 'AWS Secret Access Key'
+  aws-api-id:
+    required: false
+    description: 'AWS API Gateway REST API Id'
+  aws-api-stage:
+    required: false
+    description: 'AWS API Gateway REST API Stage'
+  
+  languages:
+    # Example:
+    #   languages: go,rust,python,scala,dart
+    #
+    # Supported languages & frameworks:
+    #   https://github.com/swagger-api/swagger-codegen#overview
+    description: 'Programming languages to generate SDKs for'
+    required: true
+   prefix:
+     description: 'Repository name prefix'
+     # Example:
+     #  prefix: MyAPI
+     required: false
+
 
 outputs:
   exit-code:
@@ -15,3 +45,9 @@ runs:
   image: 'Dockerfile'
   args:
     - ${{ inputs.access-token }}
+    - ${{ inputs.languages }}
+    - ${{ inputs.prefix  }}
+    - ${{ inputs.aws-key }}
+    - ${{ inputs.aws-key-secret }}
+    - ${{ inputs.aws-api-id }}
+    - ${{ inputs.aws-api-stage }}
