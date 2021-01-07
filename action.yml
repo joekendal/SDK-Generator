@@ -1,0 +1,17 @@
+name: 'SDK Generator'
+description: 'Automatically update client SDK repositories from an OpenAPI'
+
+inputs:
+  access-token:
+    description: 'GitHub Access Token'
+    required: true
+
+outputs:
+  exit-code:
+    description: 'Exit code'
+
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
+  args:
+    - ${{ inputs.access-token }}
