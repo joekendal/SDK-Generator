@@ -23,7 +23,7 @@ with:
     - access-token: {{ github.secrets.SDK_GENERATOR_ACCESS_TOKEN }}
 ```
 
-Set `SDK\_GENERATOR\_ACCESS\_TOKEN` in your repository secrets
+Set `SDK_GENERATOR_ACCESS_TOKEN` in your repository secrets
 
 ## Optional: AWS API Gateway Integration
 
@@ -38,7 +38,7 @@ If you want to have the SDK updated by using API Gateway:
             "Sid": "ExportSwagger",
             "Effect": "Allow",
             "Action": "apigateway:GET",
-            "Resource": "arn:aws:apigateway:eu-west-2::restapis/*rest-api-id*/stages/*stage*/exports/oas30"
+            "Resource": "arn:aws:apigateway:*::/restapis/{apiId}/stages/dev/exports/oas30"
         }
     ]
 }
