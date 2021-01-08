@@ -1,3 +1,7 @@
+TODO:
+- [ ] fix https://github.com/serverless/serverless/pull/7619 
+- [ ] template modifications
+- [ ] tests
 # SDK Generator
 
 This GitHub Action syncs an OpenAPI spec with client SDK repositories.
